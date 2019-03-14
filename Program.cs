@@ -12,6 +12,8 @@ namespace myguessingappii
     static string stillGuessing = "n";
     static string typeSearch = "h";
 
+    static string respUser = "n";
+
     static void Main(string[] args)
     {
 
@@ -34,16 +36,36 @@ namespace myguessingappii
       upper = max;
       lower = min;
 
-      Console.WriteLine("Think of a number between 1 and 100!");
+      Console.WriteLine("Think of a number between 1 and 100! Press y/n when you are ready!");
+      respUser = Console.ReadLine();
+
+      while ((respUser != "n") && (respUser != "y"))
+      {
+        Console.WriteLine("Please, press y/n for answering the question!");
+        respUser = Console.ReadLine();
+      }
+
       while (stillGuessing == "n")
       {
         guess = Convert.ToInt16(Math.Floor(Convert.ToDecimal((lower + upper) / 2)));
-        Console.WriteLine("Is it your number " + guess + "y/n?");
+        Console.WriteLine("Is your number " + guess + " ? Press y/n! ");
         stillGuessing = Console.ReadLine();
+
+        while ((stillGuessing != "n") && (stillGuessing != "y"))
+        {
+          Console.WriteLine("Please, press y/n for answering the question!");
+          stillGuessing = Console.ReadLine();
+        }
+
         if (stillGuessing == "n")
         {
-          Console.WriteLine("Is it your number higher or lower h/l?");
+          Console.WriteLine("Is your number higher or lower? Press h/l!");
           typeSearch = Console.ReadLine();
+          while ((typeSearch != "h") && (typeSearch != "l"))
+          {
+            Console.WriteLine("Please, press h/l for answering the question!");
+            typeSearch = Console.ReadLine();
+          }
         }
 
         if (typeSearch == "h")
